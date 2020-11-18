@@ -31,6 +31,7 @@ const App = () => {
       schema: schema,
       formData: data,
       onChange: e => setData(e.formData),
+      liveValidate: true,
     })),
     e('div', {style: {flex: 1}}, e(Preview, {data})),
   ]) || null;
