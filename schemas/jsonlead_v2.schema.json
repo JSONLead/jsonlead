@@ -8,6 +8,45 @@
     "version"
   ],
   "definitions": {
+    "client": {
+      "title": "Client",
+      "type": "object",
+      "properties": {
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the client"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the client"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the client"
+        },
+        "province": {
+          "type": "string",
+          "description": "The province of the client"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "The postal code of the client"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the client (E.164)"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of the client"
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom fields for the client"
+        }
+      }
+    },
     "sale": {
       "type": "object",
       "title": "Sale lead",
@@ -281,47 +320,13 @@
     },
     "client": {
       "type": "object",
-      "title": "Client",
-      "properties": {
-        "foreign_id": {
-          "type": "string",
-          "description": "A unique identifier for the client"
-        },
-        "first_name": {
-          "type": "string",
-          "description": "The first name of the client"
-        },
-        "last_name": {
-          "type": "string",
-          "description": "The last name of the client"
-        },
-        "province": {
-          "type": "string",
-          "description": "The province of the client"
-        },
-        "postal_code": {
-          "type": "string",
-          "description": "The postal code of the client"
-        },        
-        "phone": {
-          "type": "string",
-          "description": "The phone number of the client (E.164)"
-        },
-        "email": {
-          "type": "string",
-          "format": "email",
-          "description": "The email of the client"
-        },
-        "custom": {
-          "type": "object",
-          "description": "Custom fields for the client"
-        }
-      },
+      "$ref": "#/definitions/client",
       "description": "The client object"
     },
     "appraisal": {
       "type": "object",
-      "$ref": "#/definitions/appraisal"
+      "$ref": "#/definitions/appraisal",
+      "description": "The appraisallead"
     },
     "sale": {
       "type": "object",

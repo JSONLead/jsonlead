@@ -1,0 +1,22 @@
+body{
+    padding: 1em;
+}
+
+.container{
+    display: flex;
+    max-width: 100%;
+}
+
+.container div{
+    flex: 1
+}
+
+#json{
+    padding: 1em
+}
+
+#info{
+    padding: 1em;
+    border-radius: 3px;
+    margin-bottom: 1em;
+}
