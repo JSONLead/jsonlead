@@ -19,6 +19,6 @@ build
 
 # Dependency directory
 node_modules
-package*.json
+package-lock.json
 # Users Environment Variables
 .lock-wscript

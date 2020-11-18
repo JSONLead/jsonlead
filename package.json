@@ -1,0 +1,27 @@
+{
+  "name": "jsonlead",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p build/md && jsonschema2md -o build/md -d schemas",
+    "heroku-postbuild": "npm run build --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSONLead/jsonlead.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JSONLead/jsonlead/issues"
+  },
+  "homepage": "https://github.com/JSONLead/jsonlead#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "marked": "^1.2.4"
+  },
+  "devDependencies": {
+    "@adobe/jsonschema2md": "4.2.1"
+  }
+}
