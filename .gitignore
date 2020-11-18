@@ -1,0 +1,24 @@
+# Vim files
+*~
+*.swp
+*.swo
+*.swm
+*.swn
+*.swl
+
+# Emacs files
+\#*\#
+.\#*
+.tern*
+
+# Mac Os
+.DS_Store
+
+# Compiled assets
+build
+
+# Dependency directory
+node_modules
+package*.json
+# Users Environment Variables
+.lock-wscript

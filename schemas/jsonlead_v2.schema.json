@@ -8,7 +8,108 @@
     "version"
   ],
   "definitions": {
+    "sale": {
+      "type": "object",
+      "title": "Sale lead",
+      "properties": {
+        "assigned_to": {
+          "type": "string",
+          "description": "The user assigned to the sale"
+        },
+        "state": {
+          "type": "string",
+          "description": "The appraisal state"
+        },
+        "car": {
+          "description": "The car associated with this sale",
+          "$ref": "#/definitions/car"
+        },
+        "inquiry": {
+          "type": "string",
+          "description": "The sale inquiry"
+        },
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the sale"
+        },
+        "origin": {
+          "description": "The car associated with this sale",
+          "$ref": "#/definitions/origin"
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the sale"
+        },
+        "task": {
+          "description": "A task object to associate with the sale",
+          "$ref": "#/definitions/task"
+        },
+        "appointment": {
+          "description": "An appointment object to associate with the sale",
+          "$ref": "#/definitions/appointment"
+        },
+        "comment": {
+          "description": "A comment object to associate with the sale",
+          "$ref": "#/definitions/comment"
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom fields for the sale"
+        }
+      }
+    },
+    "appraisal": {
+      "type": "object",
+      "title": "Appraisal lead",
+      "properties": {
+        "assigned_to": {
+          "type": "string",
+          "description": "The username assigned to the appraisal"
+        },
+        "state": {
+          "type": "string",
+          "description": "The appraisal state"
+        },
+        "car": {
+          "description": "The car associated with this appraisal",
+          "$ref": "#/definitions/car"
+        },
+        "appraisal_value": {
+          "type": "number",
+          "description": "The appraised value for the car"
+        },
+        "origin": {
+          "description": "The car associated with this appraisal",
+          "$ref": "#/definitions/origin"
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the appraisal"
+        },
+        "task": {
+          "description": "A task object to associate with the appraisal",
+          "$ref": "#/definitions/task"
+        },
+        "appointment": {
+          "description": "An appointment object to associate with the appraisal",
+          "$ref": "#/definitions/appointment"
+        },
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the appraisal"
+        },
+        "comment": {
+          "description": "A comment object to associate with the appraisal",
+          "$ref": "#/definitions/comment"
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom fields for the appraisal"
+        }
+      }
+    },
     "car": {
+      "title": "Car",
       "type": "object",
       "properties": {
         "make": {
@@ -24,8 +125,7 @@
           "description": "Price"
         },
         "version": {
-          "type": "string",
-          "description": "Version"
+          "type": "string"
         },
         "type": {
           "type": "string",
@@ -109,6 +209,7 @@
       }
     },
     "origin": {
+      "title": "Origin",
       "type": "object",
       "properties": {
         "source": {
@@ -126,6 +227,7 @@
       }
     },
     "task": {
+      "title": "Task",
       "type": "object",
       "properties": {
         "date": {
@@ -148,6 +250,7 @@
       }
     },
     "appointment": {
+      "title": "Appointment",
       "type": "object",
       "properties": {
         "date": {
@@ -173,10 +276,12 @@
   "properties": {
     "version": {
       "type": "string",
+      "description": "Version of the JSONLead schema",
       "const": "1.0.0"
     },
     "client": {
       "type": "object",
+      "title": "Client",
       "properties": {
         "foreign_id": {
           "type": "string",
@@ -216,102 +321,11 @@
     },
     "appraisal": {
       "type": "object",
-      "properties": {
-        "assigned_to": {
-          "type": "string",
-          "description": "The username assigned to the appraisal"
-        },
-        "state": {
-          "type": "string",
-          "description": "The appraisal state"
-        },
-        "car": {
-          "description": "The car associated with this appraisal",
-          "$ref": "#/definitions/car"
-        },
-        "appraisal_value": {
-          "type": "number",
-          "description": "The appraised value for the car"
-        },
-        "origin": {
-          "description": "The car associated with this appraisal",
-          "$ref": "#/definitions/origin"
-        },
-        "location": {
-          "type": "string",
-          "description": "The location of the appraisal"
-        },
-        "task": {
-          "description": "A task object to associate with the appraisal",
-          "$ref": "#/definitions/task"
-        },
-        "appointment": {
-          "description": "An appointment object to associate with the appraisal",
-          "$ref": "#/definitions/appointment"
-        },
-        "foreign_id": {
-          "type": "string",
-          "description": "A unique identifier for the appraisal"
-        },
-        "comment": {
-          "description": "A comment object to associate with the appraisal",
-          "$ref": "#/definitions/comment"
-        },
-        "custom": {
-          "type": "object",
-          "description": "Custom fields for the appraisal"
-        }
-      },
-      "description": "The appraisallead object"
+      "$ref": "#/definitions/appraisal"
     },
     "sale": {
       "type": "object",
-      "properties": {
-        "assigned_to": {
-          "type": "string",
-          "description": "The user assigned to the sale"
-        },
-        "state": {
-          "type": "string",
-          "description": "The appraisal state"
-        },
-        "car": {
-          "description": "The car associated with this sale",
-          "$ref": "#/definitions/car"
-        },
-        "inquiry": {
-          "type": "string",
-          "description": "The sale inquiry"
-        },
-        "foreign_id": {
-          "type": "string",
-          "description": "A unique identifier for the sale"
-        },
-        "origin": {
-          "description": "The car associated with this sale",
-          "$ref": "#/definitions/origin"
-        },
-        "location": {
-          "type": "string",
-          "description": "The location of the sale"
-        },
-        "task": {
-          "description": "A task object to associate with the sale",
-          "$ref": "#/definitions/task"
-        },
-        "appointment": {
-          "description": "An appointment object to associate with the sale",
-          "$ref": "#/definitions/appointment"
-        },
-        "comment": {
-          "description": "A comment object to associate with the sale",
-          "$ref": "#/definitions/comment"
-        },
-        "custom": {
-          "type": "object",
-          "description": "Custom fields for the sale"
-        }
-      },
+      "$ref": "#/definitions/sale",
       "description": "The salelead."
     }
   }
