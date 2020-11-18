@@ -33,13 +33,38 @@
           "description": "The postal code of the client"
         },
         "phone": {
-          "type": "string",
-          "description": "The phone number of the client (E.164)"
+          "oneOf": [
+            {
+              "title": "Single phone number",
+              "type": "string",
+              "description": "The phone number of the client (E.164)"
+            }, {
+              "title": "Array of phone numbers",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The phone numbers of the client (E.164)"
+            }
+          ]
         },
         "email": {
-          "type": "string",
-          "format": "email",
-          "description": "The email of the client"
+          "oneOf": [
+            {
+              "title": "Single email address",
+              "type": "string",
+              "format": "email",
+              "description": "The email of the client"
+            }, {
+              "title": "Array of email addresses",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email"
+              },
+              "description": "The emails of the client"
+            }
+          ]
         },
         "custom": {
           "type": "object",
@@ -47,37 +72,37 @@
         }
       }
     },
-    "sale": {
+    "sales_lead": {
       "type": "object",
-      "title": "Sale lead",
+      "title": "Sales lead",
       "properties": {
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the sale"
+        },
         "assigned_to": {
           "type": "string",
           "description": "The user assigned to the sale"
         },
-        "state": {
+        "status": {
           "type": "string",
-          "description": "The appraisal state"
+          "description": "The sales lead status"
         },
         "car": {
           "description": "The car associated with this sale",
           "$ref": "#/definitions/car"
         },
-        "inquiry": {
-          "type": "string",
-          "description": "The sale inquiry"
-        },
-        "foreign_id": {
-          "type": "string",
-          "description": "A unique identifier for the sale"
-        },
         "origin": {
           "description": "The car associated with this sale",
           "$ref": "#/definitions/origin"
         },
-        "location": {
+        "dealer_location": {
           "type": "string",
           "description": "The location of the sale"
+        },
+        "inquiry": {
+          "type": "string",
+          "description": "The sale inquiry"
         },
         "task": {
           "description": "A task object to associate with the sale",
@@ -97,15 +122,19 @@
         }
       }
     },
-    "appraisal": {
+    "appraisal_lead": {
       "type": "object",
       "title": "Appraisal lead",
       "properties": {
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the appraisal"
+        },
         "assigned_to": {
           "type": "string",
           "description": "The username assigned to the appraisal"
         },
-        "state": {
+        "status": {
           "type": "string",
           "description": "The appraisal state"
         },
@@ -113,17 +142,17 @@
           "description": "The car associated with this appraisal",
           "$ref": "#/definitions/car"
         },
-        "appraisal_value": {
-          "type": "number",
-          "description": "The appraised value for the car"
-        },
         "origin": {
           "description": "The car associated with this appraisal",
           "$ref": "#/definitions/origin"
         },
-        "location": {
+        "dealer_location": {
           "type": "string",
           "description": "The location of the appraisal"
+        },
+        "appraisal_value": {
+          "type": "number",
+          "description": "The appraised value for the car"
         },
         "task": {
           "description": "A task object to associate with the appraisal",
@@ -132,10 +161,6 @@
         "appointment": {
           "description": "An appointment object to associate with the appraisal",
           "$ref": "#/definitions/appointment"
-        },
-        "foreign_id": {
-          "type": "string",
-          "description": "A unique identifier for the appraisal"
         },
         "comment": {
           "description": "A comment object to associate with the appraisal",
@@ -151,6 +176,18 @@
       "title": "Car",
       "type": "object",
       "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "new",
+            "used"
+          ],
+          "description": "Type"
+        },
+        "body_style": {
+          "type": "string",
+          "description": "Body type"
+        },
         "make": {
           "type": "string",
           "description": "Make"
@@ -159,20 +196,22 @@
           "type": "string",
           "description": "Model"
         },
-        "price": {
-          "type": "number",
-          "description": "Price"
-        },
         "version": {
           "type": "string"
         },
-        "type": {
-          "type": "string",
-          "enum": [
-            "new",
-            "used"
-          ],
-          "description": "Type"
+        "year": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Fabrication year"
+        },
+        "month": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Fabrication month"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price"
         },
         "license_plate": {
           "type": "string",
@@ -187,16 +226,6 @@
           "type": "number",
           "minimum": 0,
           "description": "Number of doors"
-        },
-        "year": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Fabrication year"
-        },
-        "month": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Fabrication month"
         },
         "warraty_months": {
           "type": "number",
@@ -215,14 +244,10 @@
           "type": "string",
           "description": "Transmission Type"
         },
-        "power": {
+        "horsepower": {
           "type": "number",
           "minimum": 0,
           "description": "Horsepower"
-        },
-        "body_style": {
-          "type": "string",
-          "description": "Body type"
         },
         "color": {
           "type": "string",
@@ -237,13 +262,9 @@
           "type": "number",
           "description": "Engine volume (cc3)"
         },
-        "extras": {
+        "equipment": {
           "type": "string",
           "description": "Extras"
-        },
-        "history": {
-          "type": "string",
-          "description": "History"
         }
       }
     },
@@ -269,12 +290,12 @@
       "title": "Task",
       "type": "object",
       "properties": {
-        "date": {
+        "due_date": {
           "type": "string",
           "format": "date-time",
           "description": "The due date of the task"
         },
-        "username": {
+        "assigned_to": {
           "type": "string",
           "description": "The user assigned to this task"
         },
@@ -292,12 +313,12 @@
       "title": "Appointment",
       "type": "object",
       "properties": {
-        "date": {
+        "due_date": {
           "type": "string",
           "format": "date-time",
           "description": "The date of the appointment"
         },
-        "username": {
+        "assigned_to": {
           "type": "string",
           "description": "The user assigned to the appointment"
         },
@@ -323,15 +344,15 @@
       "$ref": "#/definitions/client",
       "description": "The client object"
     },
-    "appraisal": {
+    "appraisal_lead": {
       "type": "object",
-      "$ref": "#/definitions/appraisal",
+      "$ref": "#/definitions/appraisal_lead",
       "description": "The appraisallead"
     },
-    "sale": {
+    "sales_lead": {
       "type": "object",
-      "$ref": "#/definitions/sale",
-      "description": "The salelead."
+      "$ref": "#/definitions/sales_lead",
+      "description": "The sales lead."
     }
   }
 }

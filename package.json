@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir -p build/md && jsonschema2md -o build/md -d schemas",
+    "build": "mkdir -p build/md && jsonschema2md -o build/md -d schemas -h false",
     "heroku-postbuild": "npm run build --"
   },
   "repository": {
