@@ -48,7 +48,10 @@ const init = async () => {
       setValidInfo('Invalid JSON'.concat(err), false);
       const p = jsonPrettyfier(jsonPrettyfier(data).split('\n').map(a => a.trim()).join(''));
       const fail_pos = extractFailingPosition(p);
-      json.innerHTML = p.slice(0, fail_pos).concat('<span class=red>').concat(p.slice(fail_pos).concat('</span>'));
+      json.innerHTML = p
+        .slice(0, fail_pos)
+        .concat('<span class=error>')
+        .concat(p.slice(fail_pos).concat('</span>'));
     }
   }
   document.querySelector('#input').addEventListener('input', e => checkChange(e.target.value))

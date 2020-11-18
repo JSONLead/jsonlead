@@ -27,6 +27,7 @@ textarea{
     resize: none;
 }
 
-.red{
+.error{
     color: red;
+    background-color: yellow;
 }
