@@ -24,6 +24,24 @@
           "type": "string",
           "description": "The last name of the client"
         },
+        "gdpr_consents": {
+          "type": "object",
+          "title": "GDPR Consents",
+          "properties": {
+            "marketing": {
+              "type": "boolean",
+              "description": "Whether or not the client has given consent to receive marketing communications"
+            },
+            "profiling": {
+              "type": "boolean",
+              "description": "Whether or not the client has given consent to use his or her data for profiling"
+            },
+            "third_party": {
+              "type": "boolean",
+              "description": "Whether or not the client has given consent to send his data to third party companies"
+            }
+          }
+        },
         "province": {
           "type": "string",
           "description": "The province of the client"
