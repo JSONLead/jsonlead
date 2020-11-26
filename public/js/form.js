@@ -15,12 +15,33 @@ const Preview = ({ data }) => {
   })}});
 }
 
+const removeEmpty = obj => Object
+  .keys(obj)
+  .map(key => {
+    const v = obj[key];
+    if(typeof v === 'object' && !Array.isArray(v) && Object(v) === v){
+      if(Object.keys(v).length > 0){
+        const emptied = removeEmpty(v);
+        if(Object.keys(emptied).length > 0){
+          return {[key]: emptied};
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else return {[key]: v};
+  })
+  .filter(f => f)
+  .reduce((p,c) => Object.assign({}, p, c),{});
+
+
 const App = () => {
   const [ schema, setSchema ] = useState();
   const [ data, setData ] = useState({ version: '1.0.0', client: {} });
   useEffect(() => {
     fetch('schemas/jsonlead_v2.schema.json')
-      .then(r => r.json())
+      .then(r => r.json())e
       .then(setSchema)
   }, [])
   return schema && e('div', {style: {
@@ -30,7 +51,7 @@ const App = () => {
     e('div', {style: {flex: 1}}, e(Form, {
       schema: schema,
       formData: data,
-      onChange: e => setData(e.formData),
+      onChange: e => setData(removeEmpty(e.formData)),
       liveValidate: true,
     })),
     e('div', {style: {flex: 1}}, e(Preview, {data})),
@@ -39,41 +60,6 @@ const App = () => {
 
 const init = async () => {
   ReactDOM.render(e(App), document.querySelector('#container'));
-  /* const schema = await fetch('schemas/jsonlead_v2.schema.json').then(r => r.json());
-   * const ajv = new Ajv();
-   * const validate = ajv.compile(schema);
-   * const BrutusinForms = brutusin["json-forms"];
-   * const bf = BrutusinForms.create(schema);
-   * const container = document.getElementById('container');
-   * const json = document.getElementById('json');
-   * bf.render(container, {version: '1.0.0', client: {first_name: "Name"}});
-   * let prev_data = null;
-   * const checkChange = data => {
-   *   try{
-   *     const json_data = JSON.parse(data);
-   *     const valid = validate(json_data);
-   *     if(valid){
-   *       setValidInfo(`Valid`, true)
-   *     } else {
-   *       setValidInfo('Invalid: '.concat(validate.errors.map(err => `${err.dataPath} ${err.message}`)), false);
-   *     }
-   *   } catch(err){
-   *     setValidInfo('Invalid JSON', false);
-   *   }
-   * }
-   * setInterval(() => {
-   *   const data = bf.getData();
-   *   if(JSON.stringify(data) !== JSON.stringify(prev_data)){
-   *     prev_data = data;
-   *     json.innerHTML = prettyPrintJson.toHtml(data, {
-   *       indent: 2,
-   *       quoteKeys: true,
-   *     });
-   *     checkChange(JSON.stringify(data))
-   *   }
-   * }, 300);
-
-   * document.querySelector('#json').addEventListener('input', e => checkChange(e.target.innerText)) */
 }
 
 document.addEventListener('DOMContentLoaded', init);
