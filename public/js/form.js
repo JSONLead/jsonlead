@@ -7,13 +7,6 @@ const setValidInfo = (i, valid) => {
   node.style.backgroundColor = valid ? '#2ba20d' : '#bb0f0f';
   node.style.color = 'white';
 }
-const Preview = ({ data }) => {
-  const ref = useRef();
-  return e('pre', {dangerouslySetInnerHTML: {__html: prettyPrintJson.toHtml(data, {
-    indent: 2,
-    quoteKeys: true,
-  })}});
-}
 
 const removeEmpty = obj => Object
   .keys(obj)
@@ -30,10 +23,22 @@ const removeEmpty = obj => Object
       } else {
         return null;
       }
-    } else return {[key]: v};
+    } else if(v != null) {
+      return {[key]: v};
+    } else return null;
+
   })
   .filter(f => f)
   .reduce((p,c) => Object.assign({}, p, c),{});
+
+const Preview = ({ data }) => {
+  const ref = useRef();
+  console.log(data);
+  return e('pre', {dangerouslySetInnerHTML: {__html: prettyPrintJson.toHtml(removeEmpty(data), {
+    indent: 2,
+    quoteKeys: true,
+  })}});
+}
 
 
 const App = () => {
@@ -41,7 +46,7 @@ const App = () => {
   const [ data, setData ] = useState({ version: '1.0.0', client: {} });
   useEffect(() => {
     fetch('schemas/jsonlead_v2.schema.json')
-      .then(r => r.json())e
+      .then(r => r.json())
       .then(setSchema)
   }, [])
   return schema && e('div', {style: {
@@ -51,7 +56,7 @@ const App = () => {
     e('div', {style: {flex: 1}}, e(Form, {
       schema: schema,
       formData: data,
-      onChange: e => setData(removeEmpty(e.formData)),
+      onChange: e => setData(e.formData),
       liveValidate: true,
     })),
     e('div', {style: {flex: 1}}, e(Preview, {data})),
