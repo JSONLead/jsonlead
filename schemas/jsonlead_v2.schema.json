@@ -362,15 +362,15 @@
       "$ref": "#/definitions/client",
       "description": "The client object"
     },
-    "appraisal_lead": {
-      "type": "object",
-      "$ref": "#/definitions/appraisal_lead",
-      "description": "The appraisallead"
-    },
     "sales_lead": {
       "type": "object",
       "$ref": "#/definitions/sales_lead",
       "description": "The sales lead."
+    },
+    "appraisal_lead": {
+      "type": "object",
+      "$ref": "#/definitions/appraisal_lead",
+      "description": "The appraisallead"
     }
   }
 }
