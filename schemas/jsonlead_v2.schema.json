@@ -134,6 +134,14 @@
           "description": "A comment object to associate with the sale",
           "$ref": "#/definitions/comment"
         },
+        "related_urls": {
+          "description": "An array of URLs with information related to the sale",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
         "custom": {
           "type": "object",
           "description": "Custom fields for the sale"
@@ -183,6 +191,14 @@
         "comment": {
           "description": "A comment object to associate with the appraisal",
           "$ref": "#/definitions/comment"
+        },
+        "related_urls": {
+          "description": "An array of URLs with information related to the appraisal",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
         },
         "custom": {
           "type": "object",
