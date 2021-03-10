@@ -31,3 +31,7 @@ textarea{
     color: red;
     background-color: yellow;
 }
+
+fieldset:not(#root){
+    margin-left: 1.5em;
+}
