@@ -86,7 +86,8 @@
         },
         "custom": {
           "type": "object",
-          "description": "Custom fields for the client"
+          "description": "Custom fields for the client",
+          "additionalProperties": true
         }
       },
       "additionalProperties": false
@@ -137,7 +138,8 @@
         },
         "custom": {
           "type": "object",
-          "description": "Custom fields for the sale"
+          "description": "Custom fields for the sale",
+          "additionalProperties": true
         }
       },
       "additionalProperties": false
@@ -188,7 +190,8 @@
         },
         "custom": {
           "type": "object",
-          "description": "Custom fields for the appraisal"
+          "description": "Custom fields for the appraisal",
+          "additionalProperties": true
         }
       },
       "additionalProperties": false
@@ -328,7 +331,8 @@
         },
         "custom": {
           "type": "object",
-          "description": "Custom fields for the task"
+          "description": "Custom fields for the task",
+          "additionalProperties": true
         }
       },
       "additionalProperties": false
@@ -348,7 +352,8 @@
         },
         "custom": {
           "type": "object",
-          "description": "Custom fields for the appointment"
+          "description": "Custom fields for the appointment",
+          "additionalProperties": true
         }
       },
       "additionalProperties": false
