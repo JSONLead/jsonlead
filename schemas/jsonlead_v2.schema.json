@@ -88,7 +88,8 @@
           "type": "object",
           "description": "Custom fields for the client"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "sales_lead": {
       "type": "object",
@@ -138,7 +139,8 @@
           "type": "object",
           "description": "Custom fields for the sale"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "appraisal_lead": {
       "type": "object",
@@ -188,7 +190,8 @@
           "type": "object",
           "description": "Custom fields for the appraisal"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "car": {
       "title": "Car",
@@ -284,7 +287,8 @@
           "type": "string",
           "description": "Extras"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "origin": {
       "title": "Origin",
@@ -302,7 +306,8 @@
           "type": "string",
           "description": "The campaign of the lead"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "task": {
       "title": "Task",
@@ -325,7 +330,8 @@
           "type": "object",
           "description": "Custom fields for the task"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "appointment": {
       "title": "Appointment",
@@ -344,7 +350,8 @@
           "type": "object",
           "description": "Custom fields for the appointment"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "comment": {
       "type": "string",
@@ -372,5 +379,6 @@
       "$ref": "#/definitions/appraisal_lead",
       "description": "The appraisallead"
     }
-  }
+  },
+  "additionalProperties": false
 }
