@@ -67,7 +67,7 @@ const App = () => {
       onChange: e => setData(e.formData),
       liveValidate: true,
     })),
-    e('div', {style: {flex: 1, overflowX: 'scroll'}}, e(Preview, {data})),
+    e('div', {style: {flex: 1, overflow: 'auto'}}, e(Preview, {data})),
   ]) || null;
 };
 
