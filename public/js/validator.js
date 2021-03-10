@@ -28,7 +28,7 @@ const extractFailingPosition = str => {
 
 const init = async () => {
   const schema = await fetch('schemas/jsonlead_v2.schema.json').then(r => r.json());
-  const ajv = new ajv7.default();
+  const ajv = new Ajv();
   const validate = ajv.compile(schema);
   const json = document.getElementById('json');
   const checkChange = data => {
