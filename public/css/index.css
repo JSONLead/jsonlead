@@ -31,3 +31,9 @@ textarea{
     color: red;
     background-color: yellow;
 }
+
+fieldset:not(#root){
+    margin-left: 0.5em;
+    padding: 1em;
+    border-left: 3px solid #5bc0de;
+}
