@@ -126,6 +126,10 @@
           "description": "A task object to associate with the sale",
           "$ref": "#/definitions/task"
         },
+        "offer": {
+          "description": "An offer object to associate with the sale",
+          "$ref": "#/definitions/offer"
+        },
         "appointment": {
           "description": "An appointment object to associate with the sale",
           "$ref": "#/definitions/appointment"
@@ -183,6 +187,10 @@
         "task": {
           "description": "A task object to associate with the appraisal",
           "$ref": "#/definitions/task"
+        },
+        "offer": {
+          "description": "An offer object to associate with the sale",
+          "$ref": "#/definitions/offer"
         },
         "appointment": {
           "description": "An appointment object to associate with the appraisal",
@@ -340,6 +348,33 @@
         "custom": {
           "type": "object",
           "description": "Custom fields for the task"
+        }
+      }
+    },
+    "offer": {
+      "title": "Offer",
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "The offered amount, in the local currency"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the offer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date of the offer"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the offer"
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom fields for the appointment"
         }
       }
     },
