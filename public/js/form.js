@@ -34,10 +34,18 @@ const removeEmpty = obj => Object
 const Preview = ({ data }) => {
   const ref = useRef();
   console.log(data);
-  return e('pre', {dangerouslySetInnerHTML: {__html: prettyPrintJson.toHtml(removeEmpty(data), {
-    indent: 2,
-    quoteKeys: true,
-  })}});
+  return e('pre', {
+    style: {
+      position: 'fixed',
+      width: '47.5%'
+    },
+    dangerouslySetInnerHTML: {
+      __html: prettyPrintJson.toHtml(removeEmpty(data), {
+        indent: 2,
+        quoteKeys: true,
+      })
+    }
+  });
 }
 
 
@@ -59,7 +67,7 @@ const App = () => {
       onChange: e => setData(e.formData),
       liveValidate: true,
     })),
-    e('div', {style: {flex: 1}}, e(Preview, {data})),
+    e('div', {style: {flex: 1, overflow: 'auto'}}, e(Preview, {data})),
   ]) || null;
 };
 
