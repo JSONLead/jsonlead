@@ -232,6 +232,15 @@
           ],
           "description": "Type"
         },
+        "category": {
+          "type": "string",
+          "enum": [
+            "car",
+            "motorcycle",
+            "industrial"
+          ],
+          "description": "The vehicle category"
+        },
         "body_style": {
           "type": "string",
           "description": "Body type"
