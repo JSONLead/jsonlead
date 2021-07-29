@@ -28,6 +28,21 @@
           "type": "object",
           "title": "GDPR Consents",
           "properties": {
+            "provider": {
+              "type": "object",
+              "title": "GDPR Provider",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The consent provider name"
+                },
+                "proof_url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "The URL of the provider where proof of consent may be stored"
+                }
+              }
+            },
             "marketing": {
               "type": "boolean",
               "description": "Whether or not the client has given consent to receive marketing communications"
