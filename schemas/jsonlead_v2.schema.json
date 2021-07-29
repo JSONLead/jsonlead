@@ -40,6 +40,10 @@
                   "type": "string",
                   "format": "uri",
                   "description": "The URL of the provider where proof of consent may be stored"
+                },
+                "proof_contents": {
+                  "type": "string",
+                  "description": "The relevant contents of the external proof"
                 }
               }
             },
