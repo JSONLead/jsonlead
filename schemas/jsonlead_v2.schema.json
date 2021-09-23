@@ -135,6 +135,10 @@
           "description": "The car associated with this sale",
           "$ref": "#/definitions/origin"
         },
+        "type": {
+          "type": "string",
+          "description": "The type of the lead"
+        },
         "dealer_location": {
           "type": "string",
           "description": "The location of the sale"
@@ -198,6 +202,10 @@
         "origin": {
           "description": "The car associated with this appraisal",
           "$ref": "#/definitions/origin"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the lead"
         },
         "dealer_location": {
           "type": "string",
