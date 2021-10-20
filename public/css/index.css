@@ -10,6 +10,12 @@ body{
 .container div{
     flex: 1
 }
+.container div.flex-fixed-50{
+    width: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
 
 #json{
     padding: 1em
@@ -26,6 +32,7 @@ textarea{
     height: 100%;
     resize: none;
 }
+
 
 .error{
     color: red;
