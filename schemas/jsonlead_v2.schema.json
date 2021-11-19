@@ -264,8 +264,7 @@
           "enum": [
             "car",
             "motorcycle",
-            "industrial",
-            "truck"
+            "industrial"
           ],
           "description": "The vehicle category"
         },
