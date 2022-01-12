@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JSONLead/jsonlead#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "marked": "^1.2.4"
   },
