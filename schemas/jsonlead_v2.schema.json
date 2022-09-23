@@ -346,6 +346,14 @@
           "description": "Car publication URL",
           "format": "uri"
         },
+        "image_urls": {
+          "type": "array",
+          "description": "Car's images' URLs",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
         "engine_size": {
           "type": "number",
           "description": "Engine volume (cc3)"
