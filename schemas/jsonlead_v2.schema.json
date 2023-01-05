@@ -440,6 +440,10 @@
       "title": "Appointment",
       "type": "object",
       "properties": {
+        "foreign_id": {
+          "type": "string",
+          "description": "A unique identifier for the appointment"
+        },
         "due_date": {
           "type": "string",
           "format": "date-time",
