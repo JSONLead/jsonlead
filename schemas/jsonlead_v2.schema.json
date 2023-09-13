@@ -123,6 +123,10 @@
           "type": "string",
           "description": "The user assigned to the sale"
         },
+        "created_by": {
+          "type": "string",
+          "description": "The name of the user who created the sale"
+        },
         "status": {
           "type": "string",
           "description": "The sales lead status"
@@ -190,6 +194,10 @@
         "assigned_to": {
           "type": "string",
           "description": "The username assigned to the appraisal"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The name of the user who created the appraisal"
         },
         "status": {
           "type": "string",
