@@ -14,7 +14,7 @@
       "properties": {
         "foreign_id": {
           "type": "string",
-          "description": "A unique identifier for the client"
+          "description": "A unique identifier that originates from an external database or system. It is meant to cross-reference the client on the destination database with the external system."
         },
         "first_name": {
           "type": "string",
@@ -117,7 +117,7 @@
       "properties": {
         "foreign_id": {
           "type": "string",
-          "description": "A unique identifier for the sale"
+          "description": "A unique identifier that originates from an external database or system. It is meant to cross-reference the sales lead on the destination database with the external system."
         },
         "assigned_to": {
           "type": "string",
@@ -185,7 +185,7 @@
       "properties": {
         "foreign_id": {
           "type": "string",
-          "description": "A unique identifier for the appraisal"
+          "description": "A unique identifier that originates from an external database or system. It is meant to cross-reference the appraisal lead on the destination database with the external system."
         },
         "assigned_to": {
           "type": "string",
@@ -442,7 +442,7 @@
       "properties": {
         "foreign_id": {
           "type": "string",
-          "description": "A unique identifier for the appointment"
+          "description": "A unique identifier that originates from an external database or system. It is meant to cross-reference the appointment on the destination database with the external system."
         },
         "due_date": {
           "type": "string",
