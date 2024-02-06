@@ -315,7 +315,7 @@
           "minimum": 0,
           "description": "Number of doors"
         },
-        "warraty_months": {
+        "warranty_months": {
           "type": "number",
           "minimum": 0,
           "description": "Duration of the warranty in months"
