@@ -391,7 +391,7 @@
         "due_date": {
           "type": "string",
           "format": "date-time",
-          "description": "The due date of the task"
+          "description": "The due date of the task. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
         },
         "assigned_to": {
           "type": "string",
@@ -424,7 +424,7 @@
         "date": {
           "type": "string",
           "format": "date-time",
-          "description": "The creation date of the offer"
+          "description": "The creation date of the offer. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
         },
         "type": {
           "type": "string",
@@ -447,7 +447,7 @@
         "due_date": {
           "type": "string",
           "format": "date-time",
-          "description": "The date of the appointment"
+          "description": "The date of the appointment. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
         },
         "assigned_to": {
           "type": "string",
