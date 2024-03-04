@@ -1,0 +1,739 @@
+{
+  "$id": "https://raw.githubusercontent.com/JSONLead/jsonlead/master/schemas/jsonlead_v3.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JsonLead",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customer",
+    "version"
+  ],
+  "definitions": {
+    "gdpr": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "object",
+          "additionalProperties": false,
+          "title": "GDPR Provider",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The consent provider name"
+            },
+            "proof_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "The URL of the provider where proof of consent may be stored"
+            },
+            "proof_contents": {
+              "type": "string",
+              "description": "The relevant contents of the external proof"
+            }
+          }
+        },
+        "marketing": {
+          "type": "boolean",
+          "description": "Whether or not the customer has given consent to receive marketing communications"
+        },
+        "profiling": {
+          "type": "boolean",
+          "description": "Whether or not the customer has given consent to use his or her data for profiling"
+        },
+        "third_party": {
+          "type": "boolean",
+          "description": "Whether or not the customer has given consent to send his data to third party companies"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "title": "Country",
+          "type": "string",
+          "description": "Country code of the address (Following ISO 3166-1 alpha-2)"
+        },
+        "area_level_1": {
+          "title": "Area level 1",
+          "type": "string",
+          "description": "Level 1 administrative division of the address (Community, State).\n See https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country for more information"
+        },
+        "area_level_2": {
+          "title": "Area level 2",
+          "type": "string",
+          "description": "Level 2 administrative division of the address (Province, County).\n See https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country for more information"
+        },
+        "area_level_3": {
+          "title": "Area level 3",
+          "type": "string",
+          "description": "Level 3 administrative division of the address (French arrondissements).\n See https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country for more information"
+        },
+        "postal_code": {
+          "title": "Postal Code",
+          "type": "string",
+          "description": "Postal code of the address"
+        },
+        "locality": {
+          "title": "Locality",
+          "type": "string",
+          "description": "Municipalities of the address (Town, City)"
+        },
+        "route": {
+          "title": "Route",
+          "type": "string",
+          "description": "Street name of the address"
+        },
+        "street_number": {
+          "title": "Street number",
+          "type": "string",
+          "description": "Street number of the address"
+        },
+        "address_details": {
+          "title": "Adress details",
+          "type": "string",
+          "description": "Additional details about the address"
+        }
+      }
+    },
+    "customer": {
+      "title": "Customer",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers from your -and/or third party- databases or systems. This ID can be used by lead managers to corss-reference and update customer information"
+        },
+        "company_information": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "For business accounts, information related to the company",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Company name"
+            },
+            "phones": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Company phone numbers (E.164)"
+            },
+            "emails": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email"
+              },
+              "description": "Company emails"
+            }
+          }
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Name of the contact",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": "First name"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": "Last name"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "description": "Gender"
+                  },
+                  "salutation": {
+                    "type": "string",
+                    "description": "Salutation (Mr., Ms., etc)"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Work title"
+                  }
+                }
+              },
+              "phones": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The phone numbers of the customer (E.164)"
+              },
+              "emails": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "description": "The emails of the customer"
+              },
+              "gdpr_consents": {
+                "description": "GDPR consents of the customer",
+                "$ref": "#/definitions/gdpr"
+              }              
+            }
+          }
+        },
+        "address": {
+          "description": "Addess of the customer",
+          "$ref": "#/definitions/address"
+        },
+        "owned_vehicles": {
+          "type": "array",
+          "description": "owned vehicles of the customer",
+          "items": { "$ref": "#/definitions/car" }
+        },
+        "custom": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Custom fields for the customer"
+        }
+      }
+    },
+    "aftersales_lead": {
+      "type": "object",
+      "additionalProperties": false,
+      "title": "Aftersales lead",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers that originates from an external database or system. It is meant to cross-reference the aftersales lead on the destination database with the external system."
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "The user assigned to the aftersale"
+        },
+        "status": {
+          "type": "string",
+          "description": "The aftersales lead status"
+        },
+        "car": {
+          "type": "array",
+          "description": "The car associated with this aftersale",
+          "items": {
+            "$ref": "#/definitions/car"
+          }
+        },
+        "origin": {
+          "description": "The car associated with this aftersale",
+          "$ref": "#/definitions/origin"
+        },
+        "dealer_location": {
+          "type": "string",
+          "description": "The location of the aftersale"
+        },
+        "tasks": {
+          "type": "array",
+          "description": "Task objects to associate with the aftersale",
+          "items": { "$ref": "#/definitions/task" }
+        },
+        "offers": {
+          "type": "array",
+          "description": "Offer objects to associate with the aftersale",
+          "items": { "$ref": "#/definitions/offer" }
+        },
+        "appointments": {
+          "type": "array",
+          "description": "Appointment objects to associate with the aftersale",
+          "items": { "$ref": "#/definitions/appointment" }
+        },
+        "comments": {
+          "type": "array",
+          "description": "Comment objects to associate with the aftersale",
+          "items": { "$ref": "#/definitions/comment" }
+        },
+        "related_urls": {
+          "description": "An array of URLs with information related to the aftersale",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the aftersale"
+        }
+      }
+    },
+    "sales_lead": {
+      "type": "object",
+      "additionalProperties": false,
+      "title": "Sales lead",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers that originates from an external database or system. It is meant to cross-reference the sales lead on the destination database with the external system."
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "The user assigned to the sale"
+        },
+        "status": {
+          "type": "string",
+          "description": "The sales lead status"
+        },
+        "car": {
+          "type": "array",
+          "description": "The car associated with this sale",
+          "items": {
+            "$ref": "#/definitions/car"
+          }
+        },
+        "origin": {
+          "description": "The car associated with this sale",
+          "$ref": "#/definitions/origin"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the lead"
+        },
+        "dealer_location": {
+          "type": "string",
+          "description": "The location of the sale"
+        },
+        "inquiry": {
+          "type": "string",
+          "description": "The sale inquiry"
+        },
+        "tasks": {
+          "type": "array",
+          "description": "Task objects to associate with the sale",
+          "items": { "$ref": "#/definitions/task" }
+        },
+        "offers": {
+          "type": "array",
+          "description": "Offer objects to associate with the sale",
+          "items": { "$ref": "#/definitions/offer" }
+        },
+        "appointments": {
+          "type": "array",
+          "description": "Appointment objects to associate with the sale",
+          "items": { "$ref": "#/definitions/appointment" }
+        },
+        "comments": {
+          "type": "array",
+          "description": "Comment objects to associate with the sale",
+          "items": { "$ref": "#/definitions/comment" }
+        },
+        "related_urls": {
+          "description": "An array of URLs with information related to the sale",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the sale"
+        }
+      }
+    },
+    "appraisal_lead": {
+      "type": "object",
+      "additionalProperties": false,
+      "title": "Appraisal lead",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers that originates from an external database or system. It is meant to cross-reference the appraisal lead on the destination database with the external system."
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "The username assigned to the appraisal"
+        },
+        "status": {
+          "type": "string",
+          "description": "The appraisal state"
+        },
+        "car": {
+          "type": "array",
+          "description": "The car associated with this appraisal",
+          "items": {
+            "$ref": "#/definitions/car"
+          }
+        },
+        "origin": {
+          "description": "The car associated with this appraisal",
+          "$ref": "#/definitions/origin"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the lead"
+        },
+        "dealer_location": {
+          "type": "string",
+          "description": "The location of the appraisal"
+        },
+        "appraisal_value": {
+          "type": "number",
+          "description": "The appraised value for the car"
+        },
+        "tasks": {
+          "type": "array",
+          "description": "Task objects to associate with the appraisal",
+          "items": { "$ref": "#/definitions/task" }
+        },
+        "offers": {
+          "type": "array",
+          "description": "Offer objects to associate with the sale",
+          "items": { "$ref": "#/definitions/offer" }
+        },
+        "appointments": {
+          "type": "array",
+          "description": "Appointment objects to associate with the appraisal",
+          "items": { "$ref": "#/definitions/appointment" }
+        },
+        "comments": {
+          "type": "array",
+          "description": "Comment objects to associate with the appraisal",
+          "items": { "$ref": "#/definitions/comment" }
+        },
+        "related_urls": {
+          "description": "An array of URLs with information related to the appraisal",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "custom": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Custom fields for the appraisal"
+        }
+      }
+    },
+    "car": {
+      "title": "Car",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "new",
+            "used"
+          ],
+          "description": "Type"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "car",
+            "motorcycle",
+            "industrial"
+          ],
+          "description": "The vehicle category"
+        },
+        "stock_id": {
+          "type": "string",
+          "description": "An unique identifier for the car"
+        },
+        "body_style": {
+          "type": "string",
+          "description": "Body style"
+        },
+        "make": {
+          "type": "string",
+          "description": "Make"
+        },
+        "model": {
+          "type": "string",
+          "description": "Model"
+        },
+        "version": {
+          "type": "string"
+        },
+        "year": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Year manufactured"
+        },
+        "month": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Month Manufactured"
+        },
+        "prices": {
+          "type": "array",
+          "description": "Vehicle prices",
+          "items": {
+            "$ref": "#/definitions/price"
+          }
+        },
+        "license_plate": {
+          "type": "string",
+          "description": "License place"
+        },
+        "mileage": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mileage"
+        },
+        "doors": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Number of doors"
+        },
+        "seats": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Number of seats"
+        },
+        "warranty_months": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Duration of the warranty in months"
+        },
+        "vin": {
+          "type": "string",
+          "description": "Vehicle Identification Number"
+        },
+        "fuel": {
+          "type": "string",
+          "description": "Fuel Type"
+        },
+        "transmission": {
+          "type": "string",
+          "description": "Transmission Type"
+        },
+        "horsepower": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Horsepower"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color"
+        },
+        "url": {
+          "type": "string",
+          "description": "Car publication URL",
+          "format": "uri"
+        },
+        "dealer_location": {
+          "type": "string",
+          "description": "The location of the car"
+        },
+        "image_urls": {
+          "type": "array",
+          "description": "Car's images' URLs",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the car"
+        },
+        "engine_size": {
+          "type": "number",
+          "description": "Engine volume (cc3)"
+        },
+        "equipment": {
+          "oneOf": [{
+            "type": "string",
+            "description": "Vehicle equipment (Text)"
+          }, {
+            "type": "array",
+            "description": "Vehicle equipment (Structured)",
+            "properties": {
+              "optional": {
+                "type": "boolean",
+                "description": "Whether or not the item comes at an extra cost, or is factory-included"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the equipment item"
+              },
+              "price": {
+                "$ref": "#/definitions/price",
+                "description": "Price of the equipment item"
+              },
+              "category": {
+                "type": "string",
+                "description": "Category of the equipment item (Comfort, Security, Interior, etc)"
+              },
+              "code": {
+                "type": "string",
+                "description": "Manufacturer code of the equipment item"
+              }
+            }
+          }]
+        }
+      }
+    },
+    "origin": {
+      "title": "Origin",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "The source of the lead"
+        },
+        "medium": {
+          "type": "string",
+          "description": "The medium of the lead"
+        },
+        "campaign": {
+          "type": "string",
+          "description": "The campaign of the lead"
+        }
+      }
+    },
+    "task": {
+      "title": "Task",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "due_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The due date of the task. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "The user assigned to this task"
+        },
+        "description": {
+          "type": "string",
+          "description": "The task description"
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the task"
+        }
+      }
+    },
+    "offer": {
+      "title": "Offer",    
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers that originates from an external database or system. It is meant to cross-reference the offer on the destination database with the external system."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The offered amount, in the local currency"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the offer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date of the offer. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the offer"
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the offer"
+        }
+      }
+    },
+    "appointment": {
+      "title": "Appointment",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of unique identifiers that originates from an external database or system. It is meant to cross-reference the appointment on the destination database with the external system."
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of the appointment. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "The user assigned to the appointment"
+        },
+        "custom": {
+          "type": "object",    
+          "additionalProperties": true,
+          "description": "Custom fields for the appointment"
+        }
+      }
+    },
+    "comment": {
+      "type": "string",
+      "description": "The comment contents"
+    },
+    "price": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the price (e.g. Retail, wholesale, etc)"
+        },
+        "amount": {
+          "type": "number",
+          "description": "The price amount"
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency of the price (ISO 4217)"
+        }
+      }
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version of the JSONLead schema",
+      "const": "https://jsonlead.org/2.0.0/schema"
+    },
+    "customer": {
+      "type": "object",
+      "$ref": "#/definitions/customer",
+      "description": "The customer object"
+    },
+    "sales_lead": {
+      "type": "object",
+      "$ref": "#/definitions/sales_lead",
+      "description": "The sales lead."
+    },
+    "appraisal_lead": {
+      "type": "object",
+      "$ref": "#/definitions/appraisal_lead",
+      "description": "The appraisallead"
+    }
+  }
+}
