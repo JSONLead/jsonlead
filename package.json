@@ -21,11 +21,17 @@
   },
   "homepage": "https://github.com/JSONLead/jsonlead#readme",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@rjsf/bootstrap-4": "^5.17.1",
+    "@rjsf/core": "^5.17.1",
+    "@rjsf/semantic-ui": "^5.17.1",
+    "@rjsf/utils": "^5.17.1",
+    "@rjsf/validator-ajv8": "^5.17.1",
+    "@uiw/react-json-view": "^2.0.0-alpha.17",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "marked": "^1.2.4"
+    "marked": "^1.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@adobe/jsonschema2md": "4.2.1",

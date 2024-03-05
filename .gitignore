@@ -17,6 +17,7 @@
 # Compiled assets
 build
 out
+dist
 
 # Dependency directory
 node_modules

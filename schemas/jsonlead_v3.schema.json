@@ -557,30 +557,36 @@
         "equipment": {
           "oneOf": [{
             "type": "string",
-            "description": "Vehicle equipment (Text)"
+            "title": "Vehicle equipment (Text)",
+            "description": "Vehicle equipment"
           }, {
             "type": "array",
-            "description": "Vehicle equipment (Structured)",
-            "properties": {
-              "optional": {
-                "type": "boolean",
-                "description": "Whether or not the item comes at an extra cost, or is factory-included"
-              },
-              "description": {
-                "type": "string",
-                "description": "Description of the equipment item"
-              },
-              "price": {
-                "$ref": "#/definitions/price",
-                "description": "Price of the equipment item"
-              },
-              "category": {
-                "type": "string",
-                "description": "Category of the equipment item (Comfort, Security, Interior, etc)"
-              },
-              "code": {
-                "type": "string",
-                "description": "Manufacturer code of the equipment item"
+            "title": "Vehicle equipment (Structured)",
+            "description": "Vehicle equipment",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "optional": {
+                  "type": "boolean",
+                  "description": "Whether or not the item comes at an extra cost, or is factory-included"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the equipment item"
+                },
+                "price": {
+                  "$ref": "#/definitions/price",
+                  "description": "Price of the equipment item"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "Category of the equipment item (Comfort, Security, Interior, etc)"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Manufacturer code of the equipment item"
+                }
               }
             }
           }]
@@ -718,7 +724,8 @@
     "version": {
       "type": "string",
       "description": "Version of the JSONLead schema",
-      "const": "https://jsonlead.org/2.0.0/schema"
+      "const": "https://jsonlead.org/2.0.0/schema",
+      "default": "https://jsonlead.org/2.0.0/schema"
     },
     "customer": {
       "type": "object",
@@ -733,7 +740,12 @@
     "appraisal_lead": {
       "type": "object",
       "$ref": "#/definitions/appraisal_lead",
-      "description": "The appraisallead"
+      "description": "The appraisal lead."
+    },
+    "aftersales_lead": {
+      "type": "object",
+      "$ref": "#/definitions/aftersales_lead",
+      "description": "The aftersales lead."
     }
   }
 }
