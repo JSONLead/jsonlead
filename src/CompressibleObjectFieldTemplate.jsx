@@ -26,6 +26,7 @@ const TitleFieldTemplate = ({ id, title, required, compressed, setCompressed }) 
           justifyContent: 'center',
           cursor: 'pointer',
           userSelect: 'none',
+          color: 'white',
         }}
         onClick={() => setCompressed(d => !d)}
       >
@@ -51,7 +52,8 @@ const CompressibleObjectFieldTemplate = props => {
     uiSchema,
   } = props;
   const options = getUiOptions(uiSchema);
-  const [ compressed, setCompressed ] = useState(options.compressible);
+  const { compressible = true } = options ?? {}
+  const [ compressed, setCompressed ] = useState(compressible);
   const DescriptionFieldTemplate = getTemplate('DescriptionFieldTemplate', registry, options);
   // Button templates are not overridden in the uiSchema
   const {
@@ -65,7 +67,7 @@ const CompressibleObjectFieldTemplate = props => {
           title={title}
           required={required}
           compressed={compressed}
-          setCompressed={options.compressible && setCompressed}
+          setCompressed={compressible && setCompressed}
         />
       )}
       {!compressed && description && (
@@ -78,7 +80,7 @@ const CompressibleObjectFieldTemplate = props => {
         />
       )}
       {compressed ? null : (
-        <div style={{borderLeft: '1px solid black', paddingLeft: '1em'}}>
+        <div style={{borderLeft: '1px solid gray', paddingLeft: '2em'}}>
           {properties.map((prop) => prop.content)}
           {canExpand(schema, uiSchema, formData) && (
             <AddButton

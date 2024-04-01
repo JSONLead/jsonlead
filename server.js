@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.static('public'));
+app.use('/builder', express.static('dist'));
 
 marked.use({ renderer: {
   table: (header, body) => {
@@ -21,6 +22,7 @@ marked.use({ renderer: {
          + '</table>\n';
   }
 }});
+
 
 app.get('/*.md', (req, res) => {
   const file = fs.readFileSync(path.join('build', 'md', req.path));

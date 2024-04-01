@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/JSONLead/jsonlead/master/schemas/jsonlead_v2.schema.json",
+  "$id": "https://raw.githubusercontent.com/JSONLead/jsonlead/master/schemas/jsonlead_v1.0.0.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "JsonLead",
   "type": "object",

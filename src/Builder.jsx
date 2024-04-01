@@ -2,10 +2,13 @@ import {
   useState,
   useEffect,
 }                                      from 'react';
-import validator                       from '@rjsf/validator-ajv8';
+import { customizeValidator }          from '@rjsf/validator-ajv8';
+import Ajv2019                         from 'ajv/dist/2019';
 import CompressibleObjectFieldTemplate from './CompressibleObjectFieldTemplate.jsx';
 import Form                            from '@rjsf/core';
 import JsonView                        from '@uiw/react-json-view';
+
+const validator = customizeValidator({ AjvClass: Ajv2019 });
 
 const VERSIONS = {
   '1.0.0': { default: { version: '1.0.0', client: {} }},
@@ -36,7 +39,7 @@ const removeEmpty = obj => Object
   .filter(f => f)
   .reduce((p,c) => Object.assign({}, p, c),{});
 
-const App = () => {
+const Builder = () => {
   const [ schema, setSchema ] = useState();
   const [ data, setData ] = useState({});
   const [ version, setVersion ] = useState(DEFAULT_VERSION);
@@ -51,6 +54,7 @@ const App = () => {
   return schema ? (
     <div style={{display: 'flex', width: '100%', height: '100vh'}}>
       <div style={{flex: 1, display: 'flex', flexDirection: 'column', gap: '1em', padding: '2em', overflow: 'auto'}}>
+        <button onClick={() => setData(JSON.parse(prompt('Manual json?')))}>Import</button>
         <select className='form-control' value={version} onChange={e => setVersion(e.target.value)}>
           <option value="1.0.0">Version 1.0.0</option>
           <option value="2.0.0">Version 2.0.0</option>
@@ -60,6 +64,7 @@ const App = () => {
           validator={validator}
           formData={data}
           uiSchema={{
+            'ui:compressible': false,
             'customer': {
               'ui:compressible': true,
               'company_information': {'ui:compressible': true},
@@ -75,11 +80,11 @@ const App = () => {
           templates={{ ObjectFieldTemplate: CompressibleObjectFieldTemplate }}
         />
       </div>
-      <div style={{flex: 1, padding: '2em', borderLeft: '1px solid black'}}>
+      <div style={{flex: 1, padding: '2em', borderLeft: '1px solid black', overflow: 'auto'}}>
         <JsonView value={removeEmpty(data)} displayDataTypes={false} shortenTextAfterLength={Infinity}/>
       </div>
     </div>
   ) : 'Loading schema...';
 }
 
-export default App
+export default Builder;
