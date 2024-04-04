@@ -589,7 +589,7 @@
         },
         "stock_number": {
           "type": "string",
-          "description": "An unique identifier for the vehicle"
+          "description": "Vehicle's unique identifier from the Dealer's DMS or IMS system"
         },
         "body_style": {
           "type": "string",
