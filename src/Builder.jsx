@@ -14,7 +14,7 @@ const VERSIONS = {
   '1.0.0': { default: { version: '1.0.0', client: {} }},
   '2.0.0': { default: { }},
 }
-const DEFAULT_VERSION = '2.0.0';
+const DEFAULT_VERSION = '1.0.0';
 
 const removeEmpty = obj => Object
   .keys(obj)
@@ -54,10 +54,9 @@ const Builder = () => {
   return schema ? (
     <div style={{display: 'flex', width: '100%', height: '100vh'}}>
       <div style={{flex: 1, display: 'flex', flexDirection: 'column', gap: '1em', padding: '2em', overflow: 'auto'}}>
-        <button onClick={() => setData(JSON.parse(prompt('Manual json?')))}>Import</button>
         <select className='form-control' value={version} onChange={e => setVersion(e.target.value)}>
           <option value="1.0.0">Version 1.0.0</option>
-          <option value="2.0.0">Version 2.0.0</option>
+          <option value="2.0.0">Version 2.0.0 (Beta)</option>
         </select>
         <Form
           schema={schema}
