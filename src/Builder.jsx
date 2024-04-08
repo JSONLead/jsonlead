@@ -10,11 +10,17 @@ import JsonView                        from '@uiw/react-json-view';
 
 const validator = customizeValidator({ AjvClass: Ajv2019 });
 
+import {
+  useQueryParam,
+  StringParam,
+  withDefault,
+} from 'use-query-params';
+
+
 const VERSIONS = {
   '1.0.0': { default: { version: '1.0.0', client: {} }},
   '2.0.0': { default: { }},
 }
-const DEFAULT_VERSION = '1.0.0';
 
 const removeEmpty = obj => Object
   .keys(obj)
@@ -42,7 +48,7 @@ const removeEmpty = obj => Object
 const Builder = () => {
   const [ schema, setSchema ] = useState();
   const [ data, setData ] = useState({});
-  const [ version, setVersion ] = useState(DEFAULT_VERSION);
+  const [ version, setVersion ] = useQueryParam('version', withDefault(StringParam, '1.0.0'));
   useEffect(() => {
     fetch(`schemas/jsonlead_v${version}.schema.json`)
       .then(r => r.json())
