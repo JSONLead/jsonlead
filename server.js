@@ -8,6 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use('/tools', express.static('dist'));
+app.get('/tools/builder', (_, res) => res.sendFile('index.html', { root: 'dist' }));
+app.get('/tools/validator', (_, res) => res.sendFile('index.html', { root: 'dist' }));
 
 marked.use({ renderer: {
   table: (header, body) => {
