@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
+app.use(express.static('public'));
 app.use('/tools', express.static('dist'));
 app.get('/tools/builder', (_, res) => res.sendFile('index.html', { root: 'dist' }));
 app.get('/tools/validator', (_, res) => res.sendFile('index.html', { root: 'dist' }));
