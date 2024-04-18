@@ -570,6 +570,13 @@
       "title": "Vehicle",
       "type": "object",
       "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of unique identifiers from your -and/or third party- databases or systems. This ID can be used by lead managers to corss-reference and update customer information"
+        },
         "type": {
           "type": "string",
           "enum": [
@@ -589,7 +596,7 @@
         },
         "stock_number": {
           "type": "string",
-          "description": "Vehicle's unique identifier from the Dealer's DMS or IMS system"
+          "description": "Vehicle's human readable or friendly unique identifier from the Dealer Archives"
         },
         "body_style": {
           "type": "string",
