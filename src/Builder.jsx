@@ -4,9 +4,23 @@ import {
 }                                      from 'react';
 import { customizeValidator }          from '@rjsf/validator-ajv8';
 import Ajv2019                         from 'ajv/dist/2019';
-import CompressibleObjectFieldTemplate from './CompressibleObjectFieldTemplate.jsx';
+import {
+  CustomObjectFieldTemplate,
+  CustomTitleFieldTemplate,
+  CustomArrayFieldTemplate,
+  CustomFieldTemplate,
+  CustomAddButton,
+  CustomWrapIfAdditionalTemplate,
+} from './CustomFormComponents.jsx';
+
 import Form                            from '@rjsf/core';
 import JsonView                        from '@uiw/react-json-view';
+
+import {
+  getTemplate,
+  ADDITIONAL_PROPERTY_FLAG,
+  getUiOptions,
+}                          from '@rjsf/utils';
 
 const validator = customizeValidator({ AjvClass: Ajv2019 });
 
@@ -45,6 +59,8 @@ const removeEmpty = obj => Object
   .filter(f => f)
   .reduce((p,c) => Object.assign({}, p, c),{});
 
+
+
 const Builder = () => {
   const [ schema, setSchema ] = useState();
   const [ data, setData ] = useState({});
@@ -82,7 +98,14 @@ const Builder = () => {
           }}
           liveValidate
           onChange={e => setData(e.formData)}
-          templates={{ ObjectFieldTemplate: CompressibleObjectFieldTemplate }}
+          templates={{
+            ObjectFieldTemplate: CustomObjectFieldTemplate,
+            TitleFieldTemplate: CustomTitleFieldTemplate,
+            ArrayFieldTemplate: CustomArrayFieldTemplate,
+            FieldTemplate: CustomFieldTemplate,
+            ButtonTemplates: { AddButton: CustomAddButton },
+            WrapIfAdditionalTemplate: CustomWrapIfAdditionalTemplate,
+          }}
         />
       </div>
       <div style={{flex: 1, padding: '2em', borderLeft: '1px solid black', overflow: 'auto'}}>
