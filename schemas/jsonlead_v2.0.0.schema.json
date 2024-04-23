@@ -223,7 +223,6 @@
           "type": "array",
           "description": "owned vehicles of the customer",
           "items": {
-            "type": "object",
             "description": "The owned vehicles of the customer",
             "unevaluatedProperties": false,
             "allOf": [
@@ -270,7 +269,6 @@
           "description": "The type of the lead"
         },
         "vehicle": {
-          "type": "object",
           "description": "The vehicle associated with this aftersale",
           "unevaluatedProperties": false,
           "allOf": [
@@ -395,19 +393,19 @@
           "type": "array",
           "description": "The vehicles associated with this sale",
           "items": {
-            "type": "object",
             "unevaluatedProperties": false,
             "allOf": [
+              { "$ref": "#/definitions/vehicle" },
               {
-                "$ref": "#/definitions/vehicle"
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": "Quantity of vehicles"
+                  }
+                }
               }
-            ],
-            "properties": {
-              "quantity": {
-                "type": "number",
-                "description": "Quantity of vehicles"
-              }
-            }
+            ]
           }
         },
         "origin": {
@@ -497,7 +495,6 @@
         "vehicles": {
           "type": "array",
           "items": {
-            "type": "object",
             "description": "The vehicles associated with this appraisal",
             "unevaluatedProperties": false,
             "allOf": [
