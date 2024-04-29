@@ -261,8 +261,12 @@
           "description": "The user assigned to the aftersale"
         },
         "status": {
+          "type": "string",
+          "description": "The aftersales lead current status"
+        },
+        "status_history": {
           "type": "object",
-          "description": "The aftersales lead statuses",
+          "description": "The aftersales lead status history",
           "additionalProperties": { "type": "string", "format": "date-time" }
         },
         "type": {
@@ -387,8 +391,12 @@
           "description": "The user assigned to the sale"
         },
         "status": {
+          "type": "string",
+          "description": "The sales lead current status"
+        },
+        "status_history": {
           "type": "object",
-          "description": "The aftersales lead statuses",
+          "description": "The sales lead status history",
           "additionalProperties": { "type": "string", "format": "date-time" }
         },
         "vehicles": {
@@ -491,8 +499,12 @@
           "description": "The username assigned to the appraisal"
         },
         "status": {
+          "type": "string",
+          "description": "The appraisal lead current status"
+        },
+        "status_history": {
           "type": "object",
-          "description": "The aftersales lead statuses",
+          "description": "The appraisal lead status history",
           "additionalProperties": { "type": "string", "format": "date-time" }
         },
         "vehicles": {
