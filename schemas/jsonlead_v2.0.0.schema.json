@@ -33,11 +33,6 @@
             }
           }
         },
-        "created_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The creation date of the consent. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
-        },
         "marketing": {
           "type": "boolean",
           "description": "Whether or not the customer has given consent to receive marketing communications"
@@ -49,6 +44,30 @@
         "third_party": {
           "type": "boolean",
           "description": "Whether or not the customer has given consent to send his data to third party companies"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date of the consent. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start date of the consent's validity. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end date of the consent's validity. Should follow ISO 8601 (2024-02-06T15:26:17.683Z)"
+        },
+        "location": {
+          "type": "string",
+          "description": "Company, legal entity or subsidiary who collects the consets."
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom fields for the gdpr entry",
+          "additionalProperties": true
         }
       }
     },
