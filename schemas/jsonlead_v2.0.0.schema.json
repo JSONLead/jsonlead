@@ -212,9 +212,9 @@
                   }
                 }
               },
-              "government_id": {
+              "government_issued_id": {
                 "type": "string",
-                "description": "Government ID of the contact (e.g. ES CIF, ID Card)"
+                "description": "Government-issued ID of the contact (e.g. ES CIF, ID Card)"
               },
               "phones": {
                 "type": "array",
