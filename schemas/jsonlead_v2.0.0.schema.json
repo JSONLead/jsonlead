@@ -234,6 +234,11 @@
               "gdpr_consents": {
                 "description": "GDPR consents of the contact",
                 "$ref": "#/definitions/gdpr"
+              },
+              "custom": {
+                "type": "object",
+                "description": "Custom fields for the contact",
+                "additionalProperties": true
               }
             }
           }
