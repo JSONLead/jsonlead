@@ -237,7 +237,7 @@
               },
               "custom": {
                 "type": "object",
-                "description": "Custom fields for the contac",
+                "description": "Custom fields for the contact",
                 "additionalProperties": true
               }
             }
