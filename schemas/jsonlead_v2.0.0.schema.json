@@ -180,6 +180,13 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "A list of unique identifiers that originates from an external database or system. This ID can be used by lead managers to cross-reference and update contact information."
+              },
               "name": {
                 "type": "object",
                 "additionalProperties": false,
@@ -615,7 +622,7 @@
           "items": {
             "type": "string"
           },
-          "description": "A list of unique identifiers from your -and/or third party- databases or systems. This ID can be used by lead managers to corss-reference and update customer information"
+          "description": "A list of unique identifiers from your -and/or third party- databases or systems. This ID can be used by lead managers to cross-reference and update customer information"
         },
         "type": {
           "type": "string",
