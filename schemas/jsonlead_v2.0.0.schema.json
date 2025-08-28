@@ -171,6 +171,11 @@
                 "format": "email"
               },
               "description": "Company emails"
+            },
+            "custom": {
+              "type": "object",
+              "description": "Custom fields for the contact",
+              "additionalProperties": true
             }
           }
         },
