@@ -675,6 +675,11 @@
           "minimum": 0,
           "description": "Month Manufactured"
         },
+        "registration_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date Manufactured"
+        },
         "prices": {
           "type": "array",
           "description": "Vehicle prices",
