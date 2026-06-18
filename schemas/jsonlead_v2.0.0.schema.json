@@ -266,8 +266,16 @@
             "description": "The owned vehicles of the customer",
             "unevaluatedProperties": false,
             "allOf": [
+              { "$ref": "#/definitions/vehicle" },
               {
-                "$ref": "#/definitions/vehicle"
+                "type": "object",
+                "properties": {
+                  "owned_since": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date of vehicle ownership"
+                  }
+                }
               }
             ]
           }
