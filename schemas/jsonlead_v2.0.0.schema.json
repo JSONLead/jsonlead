@@ -670,6 +670,10 @@
           "type": "string",
           "description": "Model"
         },
+        "model_year": {
+          "type": "number",
+          "description": "Year of the vehicle's model in 4 digit format",
+        },
         "version": {
           "type": "string"
         },
